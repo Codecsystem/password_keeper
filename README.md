@@ -1,7 +1,5 @@
 # password_keeper
 ## quick start!
-  uncompress static.rar in the same catelogue
-  
   ensure you have python and pip
   use
   ~~~bash
