@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link rel="stylesheet" href="../static/bootstrap-5.3.0/css/bootstrap.css">
+    <script src="../static/bootstrap-5.3.0/js/bootstrap.js"></script>
+    <script src="../static/js/jquery3.7.1.js"></script>
+    <style>
+        body{
+            background-color: #5583b1;
+            display: flex;
+        }
+        .box{
+            width: 500px;
+            height: 500px;
+            background-color: #fff;
+            margin: 0 auto;
+            margin-top: 200px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #000
+        }
+        .box span{
+            font-size: 30px;
+            font-weight: 700;
+            display: block;
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .box .mb-3{
+            width: 80%;
+            margin: 0 auto;
+        }
+        .box button{
+            width: 20%;
+            margin: 0 auto;
+            display: block;
+            margin-top: 50px;
+        }
+        .form-control:focus {
+            color: none;
+            background-color: none;
+            border-color:none;
+            outline:none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <span>登录</span>
+        <div class="mb-3">
+            <label for="account" class="form-label">账号</label>
+            <input type="text" class="form-control" id="account">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">密码</label>
+            <input type="password" class="form-control" id="password">
+        </div>
+        <button id="submit" type="button" class="btn btn-outline-success">确认</button>
+        <a href="http://127.0.0.1:7070/register" style="display: block; text-align: center; margin-top: 20px;">没有账号？去注册</a>
+    </div>
+    <script>
+        let agreeIn = false;
+        let postData = new Object();
+        $("#submit").click(function(){
+            postData.account = $("#account").val();
+            postData.password = $("#password").val();
+            $.ajax({
+                url: "http://127.0.0.1:7070/login",
+                type: "POST",
+                contentType: "application/json",  // 设置请求头为 JSON
+                data: JSON.stringify(postData),  // 将数据转换为 JSON 格式
+                success: function(response){
+                    if( response.code == 200)
+                    {
+                        agreeIn = true;
+                        alert(response.message);  // 显示服务器返回的消息
+                        setTimeout(() => {
+                            window.location.href = "http://127.0.0.1:7070/main";  
+                        }, 1000);
+                    }
+                    else{
+                        agreeIn = false;
+                        alert(response.message);  // 显示服务器返回的消息
+                        window.location.href = "http://127.0.0.1:7070/login";  
+                    }
+                }
+                
+            })
+        })
+    </script>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <script type="text/javascript">
+                    function myFunction() {
+                        alert("{{message|e}}");
+                    }
+                    myFunction();
+                </script>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
