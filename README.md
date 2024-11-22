@@ -1,31 +1,29 @@
 # password_keeper
-  based on Bootstrap and jQuery,and thank them to simplify my codes.
+  Based on Bootstrap and jQuery,and thank them to simplify my codes.
 ## quick start!
-  ensure you have python and pip
+  Ensure you have python and pip
   
-  use
+  Use
   ~~~bash
   git clone https://github.com/Codecsystem/password_keeper.git
   ~~~
-  then use
+  then Use
   ~~~bash
   pip install flask
   pip install flask_cors
   pip install Crypto
   ~~~
-  then use 
+  then Use 
   ~~~bash
   cd "your catelogue"
   python -u server.py
   ~~~
 
-At the end,thank my friend zsh help me to fix some security problem.
-
 #### to do list
 -[.] Restrict access frequency 
-
--[ ] can input password length when use passwordgenerator
-
+-[.] can input password length when use passwordgenerator
 -[ ] can deal with the "&gt"
+
+At the end,thank my friend zsh help me to fix some security problem.
 
 ### enjoy it!

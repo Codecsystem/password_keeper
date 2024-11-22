@@ -151,7 +151,19 @@ def passwordGenerator_post():
             ischecked = data.get('ischecked')
             return jsonify({'code': 200, 'message': '传输成功'})
         if data.get('ispasswordGenerator1btnPressed'):
-            return jsonify({'code': 200, 'message': '传输成功','password': randomPasswordGenerator(256,ischecked)})
+            passwordLen = 256
+            flagHaveotherletter = False
+            length = data.get('passwordlen')
+            for i in range(len(length)):
+                if length[i] not in '0123456789':
+                    flagHaveotherletter = True
+            if flagHaveotherletter:
+                return jsonify({'code': 402, 'message': '密码长度只能为数字'})
+            if int(length) > 512:
+                return jsonify({'code': 403, 'message': '密码长度不能超过512位'})
+            if len(length) != 0:
+                passwordLen = int(length)
+            return jsonify({'code': 200, 'message': '传输成功','password': randomPasswordGenerator(passwordLen,ischecked)})
         
 @app.route("/main/logout")
 def logout():
