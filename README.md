@@ -24,6 +24,6 @@ At the end,thank my friend zsh help me to fix some security problem.
 #### to do list
 -[ ] Restrict access frequency 
 
--[ ] can input password length when use passwordsaver
+-[ ] can input password length when use passwordgenerator
 
 ### enjoy it!
