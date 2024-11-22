@@ -22,7 +22,7 @@
 #### to do list
 -[.] Restrict access frequency 
 -[.] can input password length when use passwordgenerator
--[ ] can deal with the "&gt"
+-[.] can deal with the "&gt"
 
 At the end,thank my friend zsh help me to fix some security problem.
 

@@ -14,6 +14,7 @@ app.secret_key = '468c84aeb4c135be4b65a7961153'
 my_custom_string = "-+*(#@!)$%~?"
 data_ready_to_modify = {}
 newest_search_str=""
+exceptstr=["&gt","&lt","&amp","&quot","&apos",]
 
 def GetCurrentPath():
     CurrentPath = os.path.abspath(__file__)
@@ -190,6 +191,9 @@ def passwordGetor():
         # print(password,commitDataInputText)
         if '<' in password or '>' in password or '<' in commitDataInputText or '>' in commitDataInputText:
             return jsonify({'code': 201, 'message': '密码或备注不能包含<或>'})
+        for i in exceptstr:
+            if i in password or i in commitDataInputText:
+                return jsonify({'code': 202, 'message': '密码或备注不能包含'+i})
         # print(password,commitDataInputText)
         with open(GetCurrentPath()+"data\\"+session.get('account')+".txt", "a") as f:
             f.write(aes256_encrypt(password,sha256_to_256_bytes(hash_string_sha3_256(session['password']))) + " " + aes256_encrypt(commitDataInputText,sha256_to_256_bytes(hash_string_sha3_256(session['password']))) + "\n")
@@ -260,6 +264,9 @@ def passwordModify_post():
         # print(password,commitDataInputText)
         if '<' in password or '>' in password or '<' in commitDataInputText or '>' in commitDataInputText:
             return jsonify({'code': 401, 'message': '密码或备注不能包含<或>'})
+        for i in exceptstr:
+            if i in password or i in commitDataInputText:
+                return jsonify({'code': 401, 'message': '密码或备注不能包含'+i})
         if not password or not commitDataInputText:
             return jsonify({'code': 401, 'message': '密码或备注不能为空'})
         write_list=[]
