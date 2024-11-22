@@ -65,7 +65,13 @@
     <script>
         let agreeIn = false;
         let postData = new Object();
+        let presystime = new Date().getTime();
         $("#submit").click(function(){
+            let nowtime = new Date().getTime();
+            if(nowtime - presystime < 100){
+                return;
+            }
+            presystime = nowtime;
             postData.account = $("#account").val();
             postData.password = $("#password").val();
             $.ajax({

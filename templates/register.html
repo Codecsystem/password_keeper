@@ -60,10 +60,18 @@
             <input type="password" class="form-control" id="password">
         </div>
         <button id="submit" type="button" class="btn btn-outline-success">确认</button>
+        <a href="http://127.0.0.1:7070/login" style="display: block; text-align: center; margin-top: 20px;">注册过了？去登录</a>
     </div>
     <script>
         let postData = new Object();
+        let presystime = new Date().getTime();
         $("#submit").click(function(){
+            nowtime = new Date().getTime();
+            if (nowtime - presystime < 100){
+                alert("操作过于频繁，请稍后再试");
+                return
+            }
+            presystime = nowtime;
             postData.account = $("#account").val();
             postData.password = $("#password").val();
             $.ajax({
