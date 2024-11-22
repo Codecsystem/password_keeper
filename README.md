@@ -18,4 +18,10 @@
   cd "your catelogue"
   python -u server.py
   ~~~
-  ### enjoy it!
+
+At the end,thank my friend zsh help me to fix some security problem.
+
+#### to do list
+-[ ] Restrict access frequency 
+
+### enjoy it!
