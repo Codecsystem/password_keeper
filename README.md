@@ -26,4 +26,6 @@ At the end,thank my friend zsh help me to fix some security problem.
 
 -[ ] can input password length when use passwordgenerator
 
+-[ ] can deal with the "&gt"
+
 ### enjoy it!
