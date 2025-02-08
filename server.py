@@ -155,12 +155,13 @@ def passwordGenerator_post():
             passwordLen = 256
             flagHaveotherletter = False
             length = data.get('passwordlen')
+            print(length)
             for i in range(len(length)):
                 if length[i] not in '0123456789':
                     flagHaveotherletter = True
             if flagHaveotherletter:
                 return jsonify({'code': 402, 'message': '密码长度只能为数字'})
-            if int(length) > 512:
+            if len(length)!=0 and int(length) > 512:
                 return jsonify({'code': 403, 'message': '密码长度不能超过512位'})
             if len(length) != 0:
                 passwordLen = int(length)
